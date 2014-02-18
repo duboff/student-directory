@@ -1,27 +1,27 @@
 students = [
- "Mario Gintili",
- "Mikhail Dubov",
- "Karolis Noreika",
- "Michael Sidon",
- "Charles De Barros",
- "Ruslan Vikhor",
- "Toby Retallick",
- "Mark Mekhaiel",
- "Sarah Young",
- "Hannah Wight",
- "Khushkaran Singh",
- "Rick brunstedt",
- "Manjit Singh",
- "Alex Gaudiosi",
- "Ross Hepburn",
- "Natascia Marchese",
- "Tiffanie Chia",
- "Matthew Thomas",
- "Freddy McGroarty",
- "Tyler Rollins",
- "Richard Curteis",
- "Anna",
- "Mistery Man",
+ ["Mario Gintili", :february],
+ ["Mikhail Dubov", :february],
+ ["Karolis Noreika", :february],
+ ["Michael Sidon", :february],
+ ["Charles De Barros", :february],
+ ["Ruslan Vikhor", :february],
+ ["Toby Retallick", :february],
+ ["Mark Mekhaiel", :february],
+ ["Sarah Young", :february],
+ ["Hannah Wight", :february],
+ ["Khushkaran Singh", :february],
+ ["Rick brunstedt", :february],
+ ["Manjit Singh", :february],
+ ["Alex Gaudiosi", :february],
+ ["Ross Hepburn", :february],
+ ["Natascia Marchese", :february],
+ ["Tiffanie Chia", :february],
+ ["Matthew Thomas", :february],
+ ["Freddy McGroarty", :february],
+ ["Tyler Rollins", :february],
+ ["Richard Curteis", :february],
+ ["Anna", :february],
+ ["Mistery Man", :february],
 ]
 
 def print_header
@@ -32,7 +32,7 @@ end
 
 def print(names)
 	names.each do |x|
-		puts x
+		puts "#{x[0]} (#{x[1]} cohort)"
 	end
 end
 
