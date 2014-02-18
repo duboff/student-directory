@@ -1,6 +1,6 @@
 def print_header
-  puts "The students of my cohort at Makers Academy"
-  puts "-------------"
+  p "The students of my cohort at Makers Academy"
+  p "-------------"
 end
 
 def print(students)
