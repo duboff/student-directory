@@ -21,7 +21,7 @@ students = [
  {:name => "Tyler Rollins", :cohort => :february},
  {:name => "Richard Curteis", :cohort => :february},
  {:name => "Anna Yanova", :cohort => :february},
- {:name => "Mistery Man", :cohort => :february},
+ {:name => "Andrew Cumine", :cohort => :february},
 ]
 
 def print_header
