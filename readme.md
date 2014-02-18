@@ -4,3 +4,9 @@ For this project we'll building a student directory for our cohort.
 
 This readme will be updated constantly :) 
 
+How to use
+------------
+
+```shell
+ruby directory.rb
+```
