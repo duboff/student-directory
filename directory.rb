@@ -1,8 +1,3 @@
-
-# First we're going to print the list of our buddies
-puts  "The students of my cohort at Makers Academy,  We're February's cohort!"
-
-puts "-----------"
 students = [
  "Mario Gintili",
  "Mikhail Dubov",
@@ -28,10 +23,23 @@ students = [
  "Anna",
  "Mistery Man",
 ]
-# finally,  we print the total
 
-students.each do |student|
-	puts student
+def print_header
+	puts  "The students of my cohort at Makers Academy,  We're February's cohort!"
+	puts "-----------"
 end
-print "Overall,  we have #{students.length} great students!"
+# First we're going to print the list of our buddies
 
+def print(names)
+	names.each do |x|
+		puts x
+	end
+end
+
+def print_footer(names)
+	puts "Overall, we have #{names.length} great students"
+end
+
+print_header
+print(students)
+print_footer(students)
