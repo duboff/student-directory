@@ -23,10 +23,9 @@ puts "Tiffanie Chia"
 puts "Matthew Thomas"
 puts "Freddy McGroarty"
 puts "Tyler Rollins"
-puts "student 20"
-puts "student 21"
-puts "student 22"
-puts "student 23"
+puts "Richard Curteis"
+puts "Anna"
+puts "Mistery Man"
 # finally, we print the total
 print "Overall, we have "
 print 23
