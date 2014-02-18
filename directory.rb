@@ -29,6 +29,6 @@ puts "student 22"
 puts "student 23"
 # finally, we print the total
 print "Overall, we have "
-print 9
+print 23
 puts " great students"
 
