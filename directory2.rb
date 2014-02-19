@@ -51,7 +51,7 @@ def input_students
                   # :country => student[2],
                   #converting cohort to symbol
                   :cohort => student[1].to_sym}  
-    puts "Now we have #{students.length} students"
+    puts "Now we have #{students.length} student#{"s" if students.length != 1}"
     puts "Please enter the next student (name, cohort) or return to stop"
     # get another name from the user
     # and split strint into array of name and cohort
