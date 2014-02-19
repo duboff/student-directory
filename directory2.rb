@@ -7,15 +7,14 @@ def print_header
 end
 
 def print(students)
-  
+  # This is an easier method:
+  # students.sort_by {|student| possible_months.index(student[:cohort])}.each do |student|
+  #   puts "#{students[n][:name].center(20)} (#{students[n][:cohort]} cohort)"
+  # end
   cohorts = students.map { |student| student[:cohort] }
-  cohorts.uniq!
-  
   cohorts.each do |cohort|
-    n = 0
-    while n < students.length
-    puts "#{students[n][:name].center(20)} (#{students[n][:cohort]} cohort)" if students[n][:cohort] == cohort
-    n += 1
+    students.select{|student| student[:cohort] == cohort}.each do |student|
+      puts "#{student[:name].center(20)} (#{student[:cohort]} cohort)"
     end
   end
 end
@@ -57,7 +56,6 @@ def input_students
     # get another name from the user
     # and split strint into array of name and cohort
     student = gets.chomp.split(', ')
-    
   end
   # return the array of students
   students
