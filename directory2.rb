@@ -27,6 +27,7 @@ end
 def input_students
   # getting a string with all the month names and getting the 12 names starting with element 1
   possible_months = Date::MONTHNAMES.slice(1,12).map! {|x| x.downcase}
+  
 
   puts "Please enter the name and cohort of each ofthe students"
   puts "Use 'name, cohort'. February assumed by default"
@@ -62,6 +63,10 @@ def input_students
 end
 
 students = input_students
-print_header
-print(students)
-print_footer(students)
+if !students.empty?
+  print_header
+  print(students)
+  print_footer(students)
+else
+  puts "No students to print"
+end
