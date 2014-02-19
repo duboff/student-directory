@@ -4,9 +4,15 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    p "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
+  n = 0
+  while n < students.length
+    puts "#{students[n][:name]} (#{students[n][:cohort]} cohort)" if students[n][:name].length < 12
+    n += 1
   end
+
+  # students.each do |student|
+  #   p "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
+  # end
 end
 
 def print_footer(names)    
@@ -36,3 +42,4 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+
