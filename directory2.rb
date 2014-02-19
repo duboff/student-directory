@@ -43,7 +43,7 @@ def input_students
     student[1] = :february if !student[1]
     if !possible_months.include?(student[1])
       puts "I think you made a typo in month name. Please re-enter the cohort month"
-      student[1] =  gets.chomp
+      student[1] =  gets.strip("\r\n")
     end
     # add the student hash to the array
     students << {:name => student[0],
