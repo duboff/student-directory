@@ -7,15 +7,17 @@ def print_header
 end
 
 def print(students)
-  n = 0
-  while n < students.length
-    puts "#{students[n][:name].center(20)} (#{students[n][:cohort]} cohort)"
+  
+  cohorts = students.map { |student| student[:cohort] }
+  cohorts.uniq!
+  
+  cohorts.each do |cohort|
+    n = 0
+    while n < students.length
+    puts "#{students[n][:name].center(20)} (#{students[n][:cohort]} cohort)" if students[n][:cohort] == cohort
     n += 1
+    end
   end
-
-  # students.each do |student|
-  #   p "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
-  # end
 end
 
 def print_footer(names)    
@@ -51,7 +53,7 @@ def input_students
                   #converting cohort to symbol
                   :cohort => student[1].to_sym}  
     puts "Now we have #{students.length} students"
-    puts "Please enter the next student (name, cohort)"
+    puts "Please enter the next student (name, cohort) or return to stop"
     # get another name from the user
     # and split strint into array of name and cohort
     student = gets.chomp.split(', ')
