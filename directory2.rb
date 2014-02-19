@@ -4,8 +4,8 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index do |student, index|
-    p "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
+  students.each do |student, index|
+    p "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
   end
 end
 
@@ -23,7 +23,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do    
     # add the student hash to the array
-    students << {:name => name, :cohort => :november}    
+    students << {:name => name, :cohort => :february}    
     p "Now we have #{students.length} students"
     # get another name from the user
     name = gets.chomp
