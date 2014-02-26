@@ -31,12 +31,12 @@ def input_students
   puts "To finish, just hit return twice"
   loop do
     #default value for students is assigned if cohort is not entered
-    student = gets.chomp.split(', ')
+    student = STDIN.gets.chomp.split(', ')
     break if !student[0] # if user just presses enter we want the loop to break
     student[1] = :february if !student[1] #default value for when no cohort entered
     while !@possible_months.include?(student[1])
       puts "Please re-enter the cohort month"
-      student[1] =  gets.chomp
+      student[1] =  STDIN.gets.chomp
     end
     # add the student hash to the array
     @students << {:name => student[0], :cohort => student[1].to_sym}  
@@ -51,6 +51,7 @@ def print_menu
   puts '1. Input students'
   puts '2. Show students'
   puts '3. Save students to a csv file'
+  puts '4. Load students from a predefined csv file'
   puts '9. Exit'
   print '=>'
 end
@@ -73,6 +74,8 @@ case input
       print_student_list
     when '3'
       save_students
+    when '4'
+      try_load_students
     when '9'
       exit
     else
@@ -83,11 +86,11 @@ case input
 def main_menu
   loop do
     print_menu
-    menu_select(gets.chomp)
+    menu_select(STDIN.gets.chomp)
   end
 end
 
-def save_students
+def save_students 
   file = File.open('students.csv', 'w')
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -97,5 +100,25 @@ def save_students
   file.close
 end
 
+def load_students(filename = 'students.csv')
+  file = File.open(filename, 'r')
+  file.readlines.each do |line|
+   name, cohort = line.chomp.split(',')
+   @students << {:name => name, :cohort => cohort.to_sym}
+  end
+  file.close
+end
+
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exists?(filename)
+    load_students(filename)
+    puts "Loaded #{@students.length} students from #{filename}"
+  else
+    "Sorry #{filename} doesn't exist"
+    exit
+  end
+end
 
 main_menu
