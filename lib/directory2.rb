@@ -1,5 +1,6 @@
 # Need date module to get a list of possible month names
 require 'Date'
+require 'csv'
 
 @students = []
 @possible_months = Date::MONTHNAMES.slice(1,12).map! {|x| x.downcase}
@@ -83,21 +84,21 @@ def print_student_list
 end
 
 def menu_select(input)
-case input
-    when '1'
-      input_students
-    when '2'  
-      print_student_list
-    when '3'
-      save_students
-    when '4'
-      try_load_students
-    when '9'
-      exit
-    else
-      puts 'Incorrect input. Try again'
-    end
+  case input
+  when '1'
+    input_students
+  when '2'  
+    print_student_list
+  when '3'
+    save_students
+  when '4'
+    try_load_students
+  when '9'
+    exit
+  else
+    puts 'Incorrect input. Try again'
   end
+end
 
 def main_menu
   loop do
@@ -106,33 +107,35 @@ def main_menu
   end
 end
 
-def save_students 
-  File.open('students.csv', 'w') do |file|
+def ask_for_filename
+  puts 'What file do you want to use eg. "student.csv"'
+  STDIN.gets.chomp
+end
+
+def save_students
+  CSV.open(ask_for_filename, 'wb') do |csv|
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(',')
-      file.puts csv_line
+      csv << [student[:name], student[:cohort]]
     end
   end
 end
 
-def load_students(filename = 'students.csv')
-  File.open(filename, 'r') do |file|
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(',')
-      add_student(name, cohort)
-    end
+def load_students(filename)
+  CSV.foreach(filename) do |row|
+    student = row
+    add_student(student[0], student[1])
   end
 end
 
 def try_load_students
-  filename = ARGV.first
-  return if filename.nil?
+  filename = ask_for_filename
+  # filename = ARGV.first
+  # return if filename.nil?
   if File.exists?(filename)
     load_students(filename)
     puts "Loaded #{@students.length} students from #{filename}"
   else
-    "Sorry #{filename} doesn't exist"
+    puts "Sorry #{filename} doesn't exist"
     exit
   end
 end
