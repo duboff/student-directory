@@ -24,22 +24,38 @@ def print_footer
   puts "Overall, we have #{@students.length} great students"
 end
 
-def input_students
+def check_typo(student)
+  while !@possible_months.include?(student[1])
+    puts "Please re-enter the cohort month"
+    student[1] =  STDIN.gets.chomp
+  end
+  student
+end
+
+def insert_default_cohort(student)
+  student[1] = :february if !student[1] # default value for when no cohort entered
+  student
+end
+
+def add_student(name, cohort)
+  # add the student hash to the array
+  @students << {:name => name, :cohort => cohort.to_sym} 
+end
+
+def input_message
   puts "Please enter the name and cohort of each ofthe students"
   puts "Use 'name, cohort'. February assumed by default"
   puts 'Hit return to enter a new name'
   puts "To finish, just hit return twice"
+end
+
+def input_students
+  input_message
   loop do
-    #default value for students is assigned if cohort is not entered
     student = STDIN.gets.chomp.split(', ')
     break if !student[0] # if user just presses enter we want the loop to break
-    student[1] = :february if !student[1] #default value for when no cohort entered
-    while !@possible_months.include?(student[1])
-      puts "Please re-enter the cohort month"
-      student[1] =  STDIN.gets.chomp
-    end
-    # add the student hash to the array
-    @students << {:name => student[0], :cohort => student[1].to_sym}  
+    student = check_typo(insert_default_cohort(student))
+    add_student(student[0], student[1])
     puts "Now we have #{@students.length} student#{"s" if @students.length != 1}"
     puts "Please enter the next student (name, cohort) or press return to go back to main menu"
   end
@@ -104,7 +120,7 @@ def load_students(filename = 'students.csv')
   file = File.open(filename, 'r')
   file.readlines.each do |line|
    name, cohort = line.chomp.split(',')
-   @students << {:name => name, :cohort => cohort.to_sym}
+   add_student(name, cohort)
   end
   file.close
 end
